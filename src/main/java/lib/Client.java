@@ -16,6 +16,11 @@ public class Client {
     // The API key used for authentication & authorization.
     String ApiKey;
 
+    Client(String apiKey)
+    {
+        this.ApiKey = apiKey;
+    }
+
     void SetHttpClient(HttpClient httpClient) {
         Http = httpClient;
     }
@@ -25,7 +30,7 @@ public class Client {
             URL baseUrl = new URL(baseUrlStr);
             BaseUrl = baseUrl;
             return;
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             throw e;
         }
     }
@@ -37,4 +42,6 @@ public class Client {
     void SetApiKey(String apiKey) {
         ApiKey = apiKey;
     }
+
+
 }

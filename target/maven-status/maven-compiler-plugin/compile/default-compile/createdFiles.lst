@@ -1,0 +1,10 @@
+src/main/java/email_verify/Sv.class
+src/main/java/email_verify/Init.class
+src/main/java/mslm/Client.class
+src/main/java/email_verify/Client.class
+src/main/java/mslm/PtrFrom.class
+src/main/java/lib/Client.class
+src/main/java/mslm/Init.class
+src/main/java/lib/Req.class
+src/main/java/lib/Req$ReqOpts.class
+src/main/java/mslm/PtrTo.class
