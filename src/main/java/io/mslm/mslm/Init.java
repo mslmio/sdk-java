@@ -1,4 +1,4 @@
-package src.main.java.mslm;
+package io.mslm.mslm;
 
 public class Init {
     
