@@ -1,6 +1,6 @@
 package io.mslm.lib;
 
-import java.net.URL;
+import java.net.URI;
 import java.net.http.HttpClient;
 
 import javax.naming.Context;
@@ -10,7 +10,7 @@ public class ReqOpts {
      public HttpClient http;
 
      // Override the configured base URL just for this request.
-     public URL baseUrl;
+     public URI baseUrl;
 
      // Override the configured user-agent just for this request.
      public String userAgent;
@@ -23,7 +23,15 @@ public class ReqOpts {
     // Defaults to `context.Background()`.
     public Context context;
 
-    public String getUserAgent() {return userAgent;}
+    public ReqOpts() {}
 
-    public Context getContext() {return  context;}
+    public ReqOpts(HttpClient http, URI baseUrl, String userAgent, String apiKey, Context context) {
+        this.http = http;
+        this.baseUrl = baseUrl;
+        this.userAgent = userAgent;
+        this.apiKey = apiKey;
+        this.context = context;
+    }
+
+    public String getUserAgent() {return userAgent;}
 }

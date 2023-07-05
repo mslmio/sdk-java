@@ -2,12 +2,10 @@ package io.mslm.lib;
 
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.*;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class Client {
@@ -15,7 +13,7 @@ public class Client {
      public HttpClient http;
 
     // Base URL for API requests.
-    public URL baseUrl;
+    public URI baseUrl;
 
     // User-agent used when communicating with the API. 
     public String userAgent;
@@ -23,67 +21,82 @@ public class Client {
     // The API key used for authentication & authorization.
     public String apiKey;
 
+    public  Client(){}
+
     public Client(String apiKey)
     {
         this.apiKey = apiKey;
     }
 
-    void SetHttpClient(HttpClient httpClient) {
+    public void setHttpClient(HttpClient httpClient) {
         this.http = httpClient;
     }
 
-    void SetBaseUrl(String baseUrlStr) throws Exception
-    {
-        try {
-            URL baseUrl = new URL(baseUrlStr);
-            this.baseUrl = baseUrl;
-            return;
-        } catch (Exception e) {
-            throw e;
-        }
+    public void setBaseUrl(String baseUrlStr) throws Exception {
+        this.baseUrl = new URI(baseUrlStr);
     }
 
-    void SetUserAgent(String userAgent) {this.userAgent = userAgent;}
+    public void setUserAgent(String userAgent) {this.userAgent = userAgent;}
 
-    void SetApiKey(String apiKey) {this.apiKey = apiKey;}
+    public void setApiKey(String apiKey) {this.apiKey = apiKey;}
 
-    URI PrepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
-        StringBuilder queryString = new StringBuilder();
-        for (Map.Entry<String, String> entry : qp.entrySet())
-        {
-            String encodedVal = URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8.toString());
-            queryString.append(entry.getKey()).append("=").append(encodedVal).append("&");
+    public ReqOpts prepareReqOpts(ReqOpts opt) {
+        if (opt == null) {
+            return new ReqOpts();
         }
 
-        // Remove the trailing "&" if any.
-        if (queryString.length() > 0)
-        {
-            queryString.setLength(queryString.length()-1);
+        HttpClient httpC = this.http;
+        if (opt.http != null) {
+            httpC = opt.http;
         }
 
-        URI uri = new URI(urlPath+"?"+queryString.toString());
+        URI baseUrl = this.baseUrl;
+        if (opt.baseUrl != null) {
+            baseUrl = opt.baseUrl;
+        }
 
-        return  uri;
+        String userAgent = this.userAgent;
+        if (opt.userAgent != null) {
+            userAgent = opt.userAgent;
+        }
+
+        String apiKey = this.apiKey;
+        if (opt.apiKey != null) {
+            apiKey = opt.apiKey;
+        }
+
+        /*Context ctx = opt.context;
+        if (opt.context == null) {
+            ctx =
+        }*/
+
+        ReqOpts reqOpts = new ReqOpts(httpC, baseUrl, userAgent, apiKey, null);
+        return  reqOpts;
     }
 
-    void ReqAndResp(String method, URI tUrl, ReqOpts opt) throws IOException, InterruptedException {
+    public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
+        URI tUrl = opt.baseUrl.resolve(urlPath);
+        StringBuilder tUrlQuery = new StringBuilder();
+        for (Map.Entry<String, String> entry : qp.entrySet()) {
+            tUrlQuery.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+        tUrlQuery.append("apikey=").append(opt.apiKey);
+        String encodedQuery = tUrlQuery.toString();
+
+        return new URI(tUrl.getScheme(), tUrl.getAuthority(), tUrl.getPath(), encodedQuery, tUrl.getFragment());
+    }
+
+    public void reqAndResp(String method, URI tUrl, Object respData, ReqOpts opt) throws IOException, InterruptedException {
         HttpRequest.Builder reqBuilder = HttpRequest.newBuilder(tUrl)
                 .method(method, HttpRequest.BodyPublishers.noBody())
                 .header("User-Agent", opt.getUserAgent());
 
-//        if (opt.getContext() != null)
-//        {
-//            reqBuilder.timeout(opt.getContext());
-//        }
-
         HttpRequest request = reqBuilder.build();
-        HttpResponse<InputStream> response = http.send(request, HttpResponse.BodyHandlers.ofInputStream());
-
-        // Read body.
-        InputStream respBody = response.body();
-        byte[] bodyBytes = respBody.readAllBytes();
-
-        // Need a library to convert this or to decode this
-//        jsonDecode(bodyBytes, respData);
+        HttpResponse<byte[]> response = opt.http.send(request, HttpResponse.BodyHandlers.ofByteArray());
+        byte[] respBody = response.body();
+//        ((HttpResponse) respData).setBody(respBody);
+        //
+        //
+        // How to send data back to respData from respBody.
     }
 }
