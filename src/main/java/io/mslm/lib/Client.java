@@ -86,7 +86,7 @@ public class Client {
         return new URI(tUrl.getScheme(), tUrl.getAuthority(), tUrl.getPath(), encodedQuery, tUrl.getFragment());
     }
 
-    public void reqAndResp(String method, URI tUrl, Object respData, ReqOpts opt) throws IOException, InterruptedException {
+    public HttpResponse<String> reqAndResp(String method, URI tUrl, Object respData, ReqOpts opt) throws IOException, InterruptedException {
         HttpRequest.Builder reqBuilder = HttpRequest.newBuilder(tUrl)
                 .method(method, HttpRequest.BodyPublishers.noBody())
                 .header("User-Agent", opt.getUserAgent());
@@ -94,9 +94,11 @@ public class Client {
         HttpRequest request = reqBuilder.build();
         HttpResponse<byte[]> response = opt.http.send(request, HttpResponse.BodyHandlers.ofByteArray());
         byte[] respBody = response.body();
+
 //        ((HttpResponse) respData).setBody(respBody);
         //
         //
         // How to send data back to respData from respBody.
+        return null;
     }
 }
