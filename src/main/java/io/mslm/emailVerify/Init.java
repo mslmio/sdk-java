@@ -18,7 +18,7 @@ public class Init {
     }
 
     public static Client init(String apiKey) throws Exception {
-        Client c = new Client();
+        Client c = new Client("433c256a5443482c812fe4c7cfe69bdd");
         c.setHttpClient(HttpClient.newHttpClient());
         c.setBaseUrl("https://mslm.io");
         c.setUserAgent("mslm/go/1.0.0");
