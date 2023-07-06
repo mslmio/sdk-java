@@ -2,7 +2,6 @@ package io.mslm.mslm;
 
 import io.mslm.emailVerify.SingleVerifyReqOpts;
 
-import java.io.IOException;
 import java.net.http.HttpClient;
 
 public class Client {
