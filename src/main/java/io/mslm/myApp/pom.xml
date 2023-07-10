@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>io.mslm</groupId>
-  <artifactId>sdk-java</artifactId>
+  <groupId>org.example</groupId>
+  <artifactId>myApp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>Java SDK</name>
+  <name>myApp</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -16,15 +16,6 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
-
-<!--  <dependencies>-->
-<!--    <dependency>-->
-<!--      <groupId>junit</groupId>-->
-<!--      <artifactId>junit</artifactId>-->
-<!--      <version>3.8.1</version>-->
-<!--&lt;!&ndash;      <scope>test</scope>&ndash;&gt;-->
-<!--    </dependency>-->
-<!--  </dependencies>-->
   <build>
     <!-- this goes within <build> -->
     <plugins>
@@ -32,7 +23,7 @@
         <!-- Build an executable JAR -->
         <groupId>org.example</groupId>
         <artifactId>myApp</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>3.8.1</version>
         <configuration>
           <archive>
             <manifest>
@@ -47,4 +38,13 @@
     <!-- other properties -->
 
   </build>
+  <dependencies>
+    <dependency>
+      <groupId>io.mslm</groupId>
+      <artifactId>sdk-java</artifactId>
+      <version>3.8.1</version>
+<!--      <scope>test</scope>-->
+<!--      <scope>test</scope>-->
+    </dependency>
+  </dependencies>
 </project>

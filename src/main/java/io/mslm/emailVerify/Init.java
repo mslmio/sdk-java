@@ -5,20 +5,20 @@ import java.net.http.HttpClient;
 public class Init {
     static {
         try {
-            DefaultClient = initDefaults();
+            defaultEmailVerify = initDefaults();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static Client DefaultClient;
+    public static EmailVerify defaultEmailVerify;
 
-    public static Client initDefaults() throws Exception {
+    public static EmailVerify initDefaults() throws Exception {
         return init("");
     }
 
-    public static Client init(String apiKey) throws Exception {
-        Client c = new Client("433c256a5443482c812fe4c7cfe69bdd");
+    public static EmailVerify init(String apiKey) throws Exception {
+        EmailVerify c = new EmailVerify("433c256a5443482c812fe4c7cfe69bdd");
         c.setHttpClient(HttpClient.newHttpClient());
         c.setBaseUrl("https://mslm.io");
         c.setUserAgent("mslm/go/1.0.0");

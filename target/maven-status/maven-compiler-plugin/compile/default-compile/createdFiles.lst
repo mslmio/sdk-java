@@ -1,0 +1,10 @@
+io/mslm/emailVerify/EmailVerify.class
+io/mslm/myApp/src/main/java/org/example/App.class
+io/mslm/emailVerify/Init.class
+io/mslm/mslm/Init.class
+io/mslm/emailVerify/SingleVerifyReqOpts.class
+io/mslm/emailVerify/SingleVerifyResp.class
+io/mslm/mslm/Mslm.class
+io/mslm/lib/Client.class
+io/mslm/lib/ReqOpts.class
+io/mslm/emailVerify/SingleVerifyRespMx.class

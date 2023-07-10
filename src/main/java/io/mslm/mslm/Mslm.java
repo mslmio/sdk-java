@@ -1,31 +1,27 @@
 package io.mslm.mslm;
 
+import io.mslm.emailVerify.EmailVerify;
 import io.mslm.emailVerify.SingleVerifyReqOpts;
 
 import java.net.http.HttpClient;
 
-public class Client {
+public class Mslm {
     public io.mslm.lib.Client c;
-    public io.mslm.emailVerify.Client emailVerify;
+    public EmailVerify emailVerify;
 
-    public Client() {
+    public Mslm() {
         this.c = new io.mslm.lib.Client();
-        this.emailVerify = io.mslm.emailVerify.Client.initDefaults();
+        this.emailVerify = EmailVerify.initDefaults();
     }
 
-    public Client(String apiKey) throws Exception {
-        Client c = new Client();
-        c.setEmailVerify(io.mslm.emailVerify.Client.init(apiKey));
+    public Mslm(String apiKey) throws Exception {
+        Mslm c = new Mslm();
+        c.setEmailVerify(EmailVerify.init(apiKey));
         c.setHttpClient(HttpClient.newHttpClient());
         c.setBaseUrl("https://mslm.io");
-        c.setUserAgent("mslm/go/1.0.0");
+        c.setUserAgent("mslm/java/1.0.0");
         c.setApiKey(apiKey);
-//        return c;
     }
-
-//    public static Client initDefaults() throws Exception {
-//        return init("");
-//    }
 
     public void setHttpClient(HttpClient httpClient) {
         c.setHttpClient(httpClient);
@@ -47,11 +43,12 @@ public class Client {
         emailVerify.setApiKey(apiKey);
     }
 
-    public void setEmailVerify(io.mslm.emailVerify.Client emailVerify) {
+    public void setEmailVerify(EmailVerify emailVerify) {
         this.emailVerify = emailVerify;
     }
 
     public void singleVerify(String emailAddr, SingleVerifyReqOpts... opts) throws Exception {
+        System.out.println("Hiii..");
         emailVerify.singleVerify(emailAddr, opts);
     }
 }

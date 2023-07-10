@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Client {
+public class EmailVerify {
    io.mslm.lib.Client c;
 
-    public Client(String s){this.c = new io.mslm.lib.Client();}
+    public EmailVerify(String s){this.c = new io.mslm.lib.Client();}
 
     public void setHttpClient(HttpClient httpClient) {
         c.setHttpClient(httpClient);
@@ -28,15 +28,15 @@ public class Client {
         c.setApiKey(apiKey);
     }
 
-    public static Client init(String apiKey) {
-        Client c = new Client("433c256a5443482c812fe4c7cfe69bdd");
+    public static EmailVerify init(String apiKey) {
+        EmailVerify c = new EmailVerify("433c256a5443482c812fe4c7cfe69bdd");
         c.c.setHttpClient(HttpClient.newHttpClient());
         c.c.setUserAgent("mslm/go/1.0.0");
         c.c.setApiKey(apiKey);
         return c;
     }
 
-    public static Client initDefaults() {
+    public static EmailVerify initDefaults() {
         return init("");
     }
 
