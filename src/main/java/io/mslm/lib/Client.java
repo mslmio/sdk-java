@@ -40,7 +40,8 @@ public class Client {
 
     public void setApiKey(String apiKey) {this.apiKey = apiKey;}
 
-    public ReqOpts prepareReqOpts(ReqOpts opt) {
+    public ReqOpts prepareOpts(ReqOpts opt) {
+        System.out.println("prepareReqOpts");
         if (opt == null) {
             return new ReqOpts();
         }
@@ -50,7 +51,10 @@ public class Client {
             httpC = opt.http;
         }
 
+        System.out.println("BaseUrl");
+        System.out.println(this.baseUrl.toString());
         URI baseUrl = this.baseUrl;
+        System.out.println(this.baseUrl.toString());
         if (opt.baseUrl != null) {
             baseUrl = opt.baseUrl;
         }
@@ -75,6 +79,7 @@ public class Client {
     }
 
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
+        System.out.println("prepareUrl");
         URI tUrl = opt.baseUrl.resolve(urlPath);
         StringBuilder tUrlQuery = new StringBuilder();
         for (Map.Entry<String, String> entry : qp.entrySet()) {
@@ -87,6 +92,7 @@ public class Client {
     }
 
     public HttpResponse<String> reqAndResp(String method, URI tUrl, Object respData, ReqOpts opt) throws IOException, InterruptedException {
+        System.out.println("reqAndResp");
         HttpRequest.Builder reqBuilder = HttpRequest.newBuilder(tUrl)
                 .method(method, HttpRequest.BodyPublishers.noBody())
                 .header("User-Agent", opt.getUserAgent());

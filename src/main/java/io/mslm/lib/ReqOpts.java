@@ -26,6 +26,7 @@ public class ReqOpts {
     public ReqOpts() {}
 
     public ReqOpts(HttpClient http, URI baseUrl, String userAgent, String apiKey, Context context) {
+        System.out.println("ReqOpts");
         this.http = http;
         this.baseUrl = baseUrl;
         this.userAgent = userAgent;

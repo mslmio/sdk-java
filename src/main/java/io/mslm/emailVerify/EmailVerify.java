@@ -28,21 +28,31 @@ public class EmailVerify {
         c.setApiKey(apiKey);
     }
 
-    public static EmailVerify init(String apiKey) {
-        EmailVerify c = new EmailVerify("433c256a5443482c812fe4c7cfe69bdd");
+    public static EmailVerify init(String apiKey) throws Exception {
+        EmailVerify c = new EmailVerify(apiKey);
         c.c.setHttpClient(HttpClient.newHttpClient());
-        c.c.setUserAgent("mslm/go/1.0.0");
+        c.c.setBaseUrl("https://mslm.io");
+        c.c.setUserAgent("mslm/java/1.0.0");
         c.c.setApiKey(apiKey);
         return c;
     }
 
-    public static EmailVerify initDefaults() {
+    public static EmailVerify initDefaults() throws Exception {
         return init("");
     }
 
     public SingleVerifyResp singleVerify(String emailAddr, SingleVerifyReqOpts... opts) throws Exception {
-        SingleVerifyReqOpts opt = opts.length > 0 ? opts[opts.length - 1] : new SingleVerifyReqOpts();
-        opt.setReqOpts(c.prepareReqOpts(opt.getReqOpts()));
+        System.out.println("Single Verify-1");
+        SingleVerifyReqOpts opt = new SingleVerifyReqOpts();
+        if (opts.length > 0) {
+            opt = opts[opts.length-1];
+        }
+        System.out.println("ONE");
+        System.out.printf("SET: ", opt.getReqOpts());
+
+        opt.setReqOpts(c.prepareOpts(opt.getReqOpts()));
+        opt.reqOpts = c.prepareOpts(opt.getReqOpts());
+        System.out.printf("GET: ", opt.getReqOpts());
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", emailAddr);
         URI tUrl = c.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());

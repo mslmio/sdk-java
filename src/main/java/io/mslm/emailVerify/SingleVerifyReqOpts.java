@@ -3,7 +3,7 @@ package io.mslm.emailVerify;
 import io.mslm.lib.ReqOpts;
 
 public class SingleVerifyReqOpts {
-    private ReqOpts reqOpts;
+    public ReqOpts reqOpts;
     private Boolean disableUrlEncode;
 
     public ReqOpts getReqOpts() {
