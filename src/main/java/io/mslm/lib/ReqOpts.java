@@ -1,38 +1,34 @@
 package io.mslm.lib;
 
+import io.mslm.Constants;
+import okhttp3.OkHttpClient;
 import java.net.URI;
-import java.net.http.HttpClient;
-
-import javax.naming.Context;
 
 public class ReqOpts {
-     // Override the configured HTTP client just for this request.
-     public HttpClient http;
+    String apiKey;
+    OkHttpClient http;
+    URI baseUrl;
+    String userAgent;
 
-     // Override the configured base URL just for this request.
-     public URI baseUrl;
+    public ReqOpts() {
+        this.http = Constants.defaultHttpClient;
+        this.baseUrl = URI.create(Constants.defaultBaseUrl);
+        this.userAgent = Constants.defaultUserAgent;
+        this.apiKey = Constants.defaultApiKey;
+    }
 
-     // Override the configured user-agent just for this request.
-     public String userAgent;
-
-     // Override the configured API key just for this request.
-     public String apiKey;
-
-    // Context to use for this request.
-    //
-    // Defaults to `context.Background()`.
-    public Context context;
-
-    public ReqOpts() {}
-
-    public ReqOpts(HttpClient http, URI baseUrl, String userAgent, String apiKey, Context context) {
-        System.out.println("ReqOpts");
+    public ReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {
         this.http = http;
         this.baseUrl = baseUrl;
         this.userAgent = userAgent;
         this.apiKey = apiKey;
-        this.context = context;
     }
+
+    public String getApiKey(){return apiKey;}
+
+    public OkHttpClient getHttpClient() {return http;}
+
+    public URI getBaseUrl(){return baseUrl;}
 
     public String getUserAgent() {return userAgent;}
 }

@@ -1,63 +1,66 @@
 package io.mslm.emailVerify;
 
 
+import io.mslm.Constants;
+import io.mslm.lib.Lib;
+import io.mslm.lib.ReqOpts;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+
 import java.net.URI;
-import java.net.http.HttpClient;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class EmailVerify {
-   io.mslm.lib.Client c;
+   Lib lib;
 
-    public EmailVerify(String s){this.c = new io.mslm.lib.Client();}
+   public EmailVerify() {
+       lib = new Lib(Constants.defaultApiKey);
+   }
 
-    public void setHttpClient(HttpClient httpClient) {
-        c.setHttpClient(httpClient);
-    }
+   public EmailVerify(String apiKey) {
+       lib = new Lib(apiKey);
+   }
 
-    public void setBaseUrl(String baseUrlStr) throws Exception {
-        c.setBaseUrl(baseUrlStr);
-    }
+   public void setHttpClient(OkHttpClient httpClient) {lib.setHttpClient(httpClient);}
 
-    public void setUserAgent(String userAgent) {
-        c.setUserAgent(userAgent);
-    }
+   public void setBaseUrl(String baseUrlStr) throws Exception {lib.setBaseUrl(baseUrlStr);}
 
-    public void setApiKey(String apiKey) {
-        c.setApiKey(apiKey);
-    }
+   public void setUserAgent(String userAgent) {lib.setUserAgent(userAgent);}
 
-    public static EmailVerify init(String apiKey) throws Exception {
-        EmailVerify c = new EmailVerify(apiKey);
-        c.c.setHttpClient(HttpClient.newHttpClient());
-        c.c.setBaseUrl("https://mslm.io");
-        c.c.setUserAgent("mslm/java/1.0.0");
-        c.c.setApiKey(apiKey);
-        return c;
-    }
+   public void setApiKey(String apiKey) {lib.setApiKey(apiKey);}
 
-    public static EmailVerify initDefaults() throws Exception {
-        return init("");
-    }
+   public SingleVerifyResp singleVerify(String emailAddr) throws Exception {
+       SingleVerifyReqOpts opt = new SingleVerifyReqOpts.Builder().build();
+       opt.setReqOpts(lib.prepareOpts(opt.getReqOpts()));
 
-    public SingleVerifyResp singleVerify(String emailAddr, SingleVerifyReqOpts... opts) throws Exception {
-        System.out.println("Single Verify-1");
-        SingleVerifyReqOpts opt = new SingleVerifyReqOpts();
-        if (opts.length > 0) {
-            opt = opts[opts.length-1];
-        }
-        System.out.println("ONE");
-        System.out.printf("SET: ", opt.getReqOpts());
+       Map<String, String> qp = new HashMap<String, String>();
+       qp.put("email", emailAddr);
 
-        opt.setReqOpts(c.prepareOpts(opt.getReqOpts()));
-        opt.reqOpts = c.prepareOpts(opt.getReqOpts());
-        System.out.printf("GET: ", opt.getReqOpts());
+       URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
+       SingleVerifyResp svResp = lib.reqAndResp("GET", tUrl, opt.getReqOpts());
+       return svResp;
+   }
+
+   public SingleVerifyResp singleVerify(String emailAddr, SingleVerifyReqOpts opts) throws Exception {
+       SingleVerifyReqOpts opt = new SingleVerifyReqOpts.Builder().build(); // Default options
+       if (opts != null) {
+           opt = opts;
+       }
+       opt.setReqOpts(lib.prepareOpts(opt.getReqOpts()));
+
+       if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
+           emailAddr = URLEncoder.encode(emailAddr, "UTF-8");
+       }
+
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", emailAddr);
-        URI tUrl = c.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
-        SingleVerifyResp svResp = new SingleVerifyResp();
-        c.reqAndResp("GET", tUrl, svResp, opt.getReqOpts());
+
+        URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
+        SingleVerifyResp svResp = lib.reqAndResp("GET", tUrl, opt.getReqOpts());
         return svResp;
-    }
+   }
+
 }
