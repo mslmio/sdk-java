@@ -37,34 +37,6 @@ public class Lib {
 
     public void setApiKey(String apiKey) {this.apiKey = apiKey;}
 
-    public ReqOpts prepareOpts(ReqOpts opt) {
-        if (opt == null) {
-            return new ReqOpts();
-        }
-
-        OkHttpClient httpC = this.http;
-        if (opt.http != null) {
-            httpC = opt.http;
-        }
-
-        URI baseUrl = this.baseUrl;
-        if (opt.baseUrl != null) {
-            baseUrl = opt.baseUrl;
-        }
-
-        String userAgent = this.userAgent;
-        if (opt.userAgent != null) {
-            userAgent = opt.userAgent;
-        }
-
-        String apiKey = this.apiKey;
-        if (opt.apiKey != null) {
-            apiKey = opt.apiKey;
-        }
-
-        return new ReqOpts(httpC, baseUrl, userAgent, apiKey);
-    }
-
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
         URI tUrl = opt.baseUrl.resolve(urlPath);
         StringBuilder tUrlQuery = new StringBuilder();
@@ -83,7 +55,6 @@ public class Lib {
     }
 
     public SingleVerifyResp reqAndResp(
-            String method,
             URI tUrl,
             ReqOpts opt
     ) throws Exception {

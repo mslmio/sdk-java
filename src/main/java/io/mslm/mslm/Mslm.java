@@ -6,15 +6,20 @@ import io.mslm.lib.Lib;
 import okhttp3.OkHttpClient;
 
 public class Mslm {
+    // Common lib class.
     public Lib lib;
+
+    // The Email Verify API client.
     public EmailVerify emailVerify;
 
     public Mslm() {
         emailVerify = new EmailVerify(Constants.defaultApiKey);
+        lib = new Lib(Constants.defaultApiKey);
     }
 
     public Mslm(String apiKey) {
         emailVerify = new EmailVerify(apiKey);
+        lib = new Lib(apiKey);
     }
 
     public void setHttpClient(OkHttpClient httpClient) {

@@ -8,17 +8,19 @@ public class SingleVerifyReqOpts {
 
     public SingleVerifyReqOpts() {}
 
-    public void setReqOpts(ReqOpts reqOpts) {
-        this.reqOpts = reqOpts;
-    }
-
     public ReqOpts getReqOpts() {
         return reqOpts;
+    }
+
+    public void setReqOpts(ReqOpts reqOpts) {
+        this.reqOpts = reqOpts;
     }
 
     public Boolean getDisableUrlEncode() {
         return disableUrlEncode;
     }
+
+    public void setDisableUrlEncode(Boolean disableUrlEncode) {this.disableUrlEncode = disableUrlEncode;}
 
     // Builder class for SingleVerifyReqOpts
     public static class Builder {
@@ -26,6 +28,8 @@ public class SingleVerifyReqOpts {
 
         public Builder() {
             opts = new SingleVerifyReqOpts();
+            opts.reqOpts = new ReqOpts();
+            opts.disableUrlEncode = false;
         }
 
         public Builder withReqOpts(ReqOpts reqOpts) {
