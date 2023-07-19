@@ -33,18 +33,22 @@ public class EmailVerify {
     public void setApiKey(String apiKey) {lib.setApiKey(apiKey);}
 
     public SingleVerifyResp singleVerify(String email) throws Exception {
+        // Set request options to default in case not provider with the req.
         SingleVerifyReqOpts opt = new SingleVerifyReqOpts
                 .Builder()
                 .withReqOpts(new ReqOpts.Builder().build())
-                .withDisableUrlEncode(false)
                 .build();
 
+//        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
+//            email = URLEncoder.encode(email, "UTF-8");
+//        }
+        System.out.println("Email: "+ email);
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", email);
 
+        // Get data.
         URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
-        SingleVerifyResp svResp = lib.reqAndResp(tUrl, opt.getReqOpts());
-        return svResp;
+        return lib.reqAndResp(tUrl, opt.getReqOpts());
    }
 
    public SingleVerifyResp singleVerify(String email, SingleVerifyReqOpts opts) throws Exception {
@@ -56,16 +60,16 @@ public class EmailVerify {
            opt = opts;
        }
 
+       // Prepare URL.
        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
            email = URLEncoder.encode(email, "UTF-8");
        }
+       System.out.println("Email: "+ email);
+       Map<String, String> qp = new HashMap<String, String>();
+       qp.put("email", email);
 
-        Map<String, String> qp = new HashMap<String, String>();
-        qp.put("email", email);
-
-        URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
-        SingleVerifyResp svResp = lib.reqAndResp(tUrl, opt.getReqOpts());
-        return svResp;
+       // Get data.
+       URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
+       return lib.reqAndResp(tUrl, opt.getReqOpts());
    }
-
 }

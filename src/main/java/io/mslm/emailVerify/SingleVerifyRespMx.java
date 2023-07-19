@@ -1,22 +1,22 @@
 package io.mslm.emailVerify;
 
+import com.google.gson.annotations.SerializedName;
+
 public class SingleVerifyRespMx {
+    @SerializedName("host")
     private String host;
+    @SerializedName("pref")
     private int pref;
 
-    public String getHost() {
-        return host;
+    @Override
+    public String toString() {
+        return "SingleVerifyRespMx{" +
+                "host='" + host + '\'' +
+                ", pref=" + pref +
+                '}';
     }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
+    public String getHost() {return host;}
 
-    public int getPref() {
-        return pref;
-    }
-
-    public void setPref(int pref) {
-        this.pref = pref;
-    }
+    public int getPref() {return pref;}
 }

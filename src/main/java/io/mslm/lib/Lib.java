@@ -71,7 +71,6 @@ public class Lib {
 
         Gson gson = new Gson();
         SingleVerifyResp singleVerifyResp = gson.fromJson(jsonData, SingleVerifyResp.class);
-        System.out.println(singleVerifyResp);
         return  singleVerifyResp;
     }
 }

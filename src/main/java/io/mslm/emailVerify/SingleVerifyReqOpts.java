@@ -3,7 +3,13 @@ package io.mslm.emailVerify;
 import io.mslm.lib.ReqOpts;
 
 public class SingleVerifyReqOpts {
+    // Common request options.
     private ReqOpts reqOpts;
+
+    // If this is set to `true`, the email won't be URL encoded
+    // just for this request.
+    //
+    // By default, the input email address is URL encoded.*/
     private Boolean disableUrlEncode;
 
     public SingleVerifyReqOpts() {}
@@ -22,7 +28,7 @@ public class SingleVerifyReqOpts {
 
     public void setDisableUrlEncode(Boolean disableUrlEncode) {this.disableUrlEncode = disableUrlEncode;}
 
-    // Builder class for SingleVerifyReqOpts
+    // Builder class for SingleVerifyReqOpts.
     public static class Builder {
         private SingleVerifyReqOpts opts;
 

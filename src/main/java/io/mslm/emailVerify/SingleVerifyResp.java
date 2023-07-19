@@ -7,16 +7,27 @@ import java.util.List;
 public class SingleVerifyResp {
     @SerializedName("email")
     private String email;
+    @SerializedName("username")
     private String username;
+    @SerializedName("domain")
     private String domain;
+    @SerializedName("malformed")
     private boolean malformed;
+    @SerializedName("suggestion")
     private String suggestion;
+    @SerializedName("status")
     private String status;
+    @SerializedName("has_mailbox")
     private boolean hasMailbox;
+    @SerializedName("accept_all")
     private boolean acceptAll;
+    @SerializedName("disposable")
     private boolean disposable;
+    @SerializedName("free")
     private boolean free;
+    @SerializedName("role")
     private boolean role;
+    @SerializedName("mx")
     private List<SingleVerifyRespMx> mx;
 
     @Override
@@ -37,96 +48,51 @@ public class SingleVerifyResp {
                 '}';
     }
 
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-//
-//    public String getDomain() {
-//        return domain;
-//    }
-//
-//    public void setDomain(String domain) {
-//        this.domain = domain;
-//    }
-//
-//    public boolean isMalformed() {
-//        return malformed;
-//    }
-//
-//    public void setMalformed(boolean malformed) {
-//        this.malformed = malformed;
-//    }
-//
-//    public String getSuggestion() {
-//        return suggestion;
-//    }
-//
-//    public void setSuggestion(String suggestion) {
-//        this.suggestion = suggestion;
-//    }
-//
-//    public String getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
-//
-//    public boolean isHasMailbox() {
-//        return hasMailbox;
-//    }
-//
-//    public void setHasMailbox(boolean hasMailbox) {
-//        this.hasMailbox = hasMailbox;
-//    }
-//
-//    public boolean isAcceptAll() {
-//        return acceptAll;
-//    }
-//
-//    public void setAcceptAll(boolean acceptAll) {
-//        this.acceptAll = acceptAll;
-//    }
-//
-//    public boolean isDisposable() {
-//        return disposable;
-//    }
-//
-//    public void setDisposable(boolean disposable) {
-//        this.disposable = disposable;
-//    }
-//
-//    public boolean isFree() {
-//        return free;
-//    }
-//
-//    public void setFree(boolean free) {
-//        this.free = free;
-//    }
-//
-//    public boolean isRole() {
-//        return role;
-//    }
-//
-//    public void setRole(boolean role) {
-//        this.role = role;
-//    }
-//
-//    public List<SingleVerifyRespMx> getMx() {
-//        return mx;
-//    }
-//
-//    public void setMx(List<SingleVerifyRespMx> mx) {
-//        this.mx = mx;
-//    }
+    public String getEmail() {
+        return email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public boolean isMalformed() {
+        return malformed;
+    }
+
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public boolean isHasMailbox() {
+        return hasMailbox;
+    }
+
+    public boolean isAcceptAll() {
+        return acceptAll;
+    }
+
+    public boolean isDisposable() {
+        return disposable;
+    }
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public boolean isRole() {
+        return role;
+    }
+
+    public List<SingleVerifyRespMx> getMx() {
+        return mx;
+    }
 }
