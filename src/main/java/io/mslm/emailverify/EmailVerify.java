@@ -1,4 +1,4 @@
-package io.mslm.emailVerify;
+package io.mslm.emailverify;
 
 
 import io.mslm.Constants;
@@ -24,13 +24,21 @@ public class EmailVerify {
         lib = new Lib(apiKey);
     }
 
-    public void setHttpClient(OkHttpClient httpClient) {lib.setHttpClient(httpClient);}
+    public void setHttpClient(OkHttpClient httpClient) {
+        lib.setHttpClient(httpClient);
+    }
 
-    public void setBaseUrl(String baseUrlStr) throws Exception {lib.setBaseUrl(baseUrlStr);}
+    public void setBaseUrl(String baseUrlStr) throws Exception {
+        lib.setBaseUrl(baseUrlStr);
+    }
 
-    public void setUserAgent(String userAgent) {lib.setUserAgent(userAgent);}
+    public void setUserAgent(String userAgent) {
+        lib.setUserAgent(userAgent);
+    }
 
-    public void setApiKey(String apiKey) {lib.setApiKey(apiKey);}
+    public void setApiKey(String apiKey) {
+        lib.setApiKey(apiKey);
+    }
 
     public SingleVerifyResp singleVerify(String email) throws Exception {
         // Set request options to default in case not provider with the req.

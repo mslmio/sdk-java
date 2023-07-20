@@ -1,7 +1,7 @@
 package io.mslm.mslm;
 
 import io.mslm.Constants;
-import io.mslm.emailVerify.EmailVerify;
+import io.mslm.emailverify.EmailVerify;
 import io.mslm.lib.Lib;
 import okhttp3.OkHttpClient;
 

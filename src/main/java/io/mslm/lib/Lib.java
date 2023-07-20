@@ -1,7 +1,7 @@
 package io.mslm.lib;
 
 import io.mslm.Constants;
-import io.mslm.emailVerify.SingleVerifyResp;
+import io.mslm.emailverify.SingleVerifyResp;
 import okhttp3.*;
 
 import com.google.gson.Gson;
@@ -29,13 +29,20 @@ public class Lib {
         userAgent = Constants.defaultUserAgent;
     }
 
-    public void setHttpClient(OkHttpClient httpClient) {this.http = httpClient;}
+    public void setHttpClient(OkHttpClient httpClient) {
+        this.http = httpClient;}
 
-    public void setBaseUrl(String baseUrlStr) throws Exception {this.baseUrl = new URI(baseUrlStr);}
+    public void setBaseUrl(String baseUrlStr) throws Exception {
+        this.baseUrl = new URI(baseUrlStr);
+    }
 
-    public void setUserAgent(String userAgent) {this.userAgent = userAgent;}
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
+    }
 
-    public void setApiKey(String apiKey) {this.apiKey = apiKey;}
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
         URI tUrl = opt.baseUrl.resolve(urlPath);

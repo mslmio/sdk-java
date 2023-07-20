@@ -42,7 +42,7 @@ public class ReqOpts {
 
     // Builder class for ReqOpts
     public static class Builder {
-        private ReqOpts opts;
+        private final ReqOpts opts;
 
         public Builder() {
             opts = new ReqOpts();

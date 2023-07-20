@@ -1,4 +1,4 @@
-package io.mslm.emailVerify;
+package io.mslm.emailverify;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -16,7 +16,11 @@ public class SingleVerifyRespMx {
                 '}';
     }
 
-    public String getHost() {return host;}
+    public String getHost() {
+        return host;
+    }
 
-    public int getPref() {return pref;}
+    public int getPref() {
+        return pref;
+    }
 }

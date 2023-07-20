@@ -1,4 +1,4 @@
-package io.mslm.emailVerify;
+package io.mslm.emailverify;
 
 import io.mslm.lib.ReqOpts;
 
@@ -26,7 +26,9 @@ public class SingleVerifyReqOpts {
         return disableUrlEncode;
     }
 
-    public void setDisableUrlEncode(Boolean disableUrlEncode) {this.disableUrlEncode = disableUrlEncode;}
+    public void setDisableUrlEncode(Boolean disableUrlEncode) {
+        this.disableUrlEncode = disableUrlEncode;
+    }
 
     // Builder class for SingleVerifyReqOpts.
     public static class Builder {

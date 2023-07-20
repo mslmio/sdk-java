@@ -1,4 +1,4 @@
-package io.mslm.emailVerify;
+package io.mslm.emailverify;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,26 +7,37 @@ import java.util.List;
 public class SingleVerifyResp {
     @SerializedName("email")
     private String email;
+
     @SerializedName("username")
     private String username;
+
     @SerializedName("domain")
     private String domain;
+
     @SerializedName("malformed")
     private boolean malformed;
+
     @SerializedName("suggestion")
     private String suggestion;
+
     @SerializedName("status")
     private String status;
+
     @SerializedName("has_mailbox")
     private boolean hasMailbox;
+
     @SerializedName("accept_all")
     private boolean acceptAll;
+
     @SerializedName("disposable")
     private boolean disposable;
+
     @SerializedName("free")
     private boolean free;
+
     @SerializedName("role")
     private boolean role;
+
     @SerializedName("mx")
     private List<SingleVerifyRespMx> mx;
 
