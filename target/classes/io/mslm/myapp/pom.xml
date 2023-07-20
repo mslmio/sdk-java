@@ -13,8 +13,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>20</maven.compiler.source>
+    <maven.compiler.target>20</maven.compiler.target>
   </properties>
   <build>
     <!-- this goes within <build> -->
@@ -28,23 +28,18 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <!-- here we specify that we want to use the main method within the App class -->
               <mainClass>io.mslm.myapp.src.main.java.org.example.App</mainClass>
             </manifest>
           </archive>
         </configuration>
       </plugin>
     </plugins>
-    <!-- other properties -->
-
   </build>
   <dependencies>
     <dependency>
       <groupId>io.mslm</groupId>
-      <artifactId>sdk-java</artifactId>
+      <artifactId>mslm-java-sdk</artifactId>
       <version>3.8.1</version>
-<!--      <scope>test</scope>-->
-<!--      <scope>test</scope>-->
     </dependency>
   </dependencies>
 </project>
