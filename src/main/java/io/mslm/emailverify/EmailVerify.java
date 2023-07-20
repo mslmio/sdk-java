@@ -1,6 +1,5 @@
 package io.mslm.emailverify;
 
-
 import io.mslm.Constants;
 import io.mslm.lib.Lib;
 import io.mslm.lib.ReqOpts;
@@ -10,7 +9,6 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class EmailVerify {
     // Common lib class.
@@ -47,9 +45,6 @@ public class EmailVerify {
                 .withReqOpts(new ReqOpts.Builder().build())
                 .build();
 
-//        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
-//            email = URLEncoder.encode(email, "UTF-8");
-//        }
         System.out.println("Email: "+ email);
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", email);

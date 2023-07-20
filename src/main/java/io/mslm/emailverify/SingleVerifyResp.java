@@ -83,7 +83,7 @@ public class SingleVerifyResp {
         return status;
     }
 
-    public boolean isHasMailbox() {
+    public boolean hasMailbox() {
         return hasMailbox;
     }
 
