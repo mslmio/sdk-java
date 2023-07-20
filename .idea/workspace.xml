@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba5b3f3b-55cf-465f-b77f-5d7a86f389fe" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/emailVerify/EmailVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/EmailVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/emailVerify/SingleVerifyReqOpts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/SingleVerifyReqOpts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/emailVerify/SingleVerifyResp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/SingleVerifyResp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/emailVerify/SingleVerifyRespMx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/SingleVerifyRespMx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/lib/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/lib/Lib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/lib/ReqOpts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/lib/ReqOpts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/mslm/Mslm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/mslm/Mslm.java" afterDir="false" />
-    </list>
+    <list default="true" id="ba5b3f3b-55cf-465f-b77f-5d7a86f389fe" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

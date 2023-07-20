@@ -29,7 +29,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <!-- here we specify that we want to use the main method within the App class -->
-              <mainClass>io.mslm.myApp.src.main.java.org.example.App</mainClass>
+              <mainClass>io.mslm.myapp.src.main.java.org.example.App</mainClass>
             </manifest>
           </archive>
         </configuration>
