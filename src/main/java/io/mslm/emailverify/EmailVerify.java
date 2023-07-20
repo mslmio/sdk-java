@@ -45,7 +45,6 @@ public class EmailVerify {
                 .withReqOpts(new ReqOpts.Builder().build())
                 .build();
 
-        System.out.println("Email: "+ email);
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", email);
 
@@ -67,7 +66,7 @@ public class EmailVerify {
        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
            email = URLEncoder.encode(email, "UTF-8");
        }
-       System.out.println("Email: "+ email);
+
        Map<String, String> qp = new HashMap<String, String>();
        qp.put("email", email);
 

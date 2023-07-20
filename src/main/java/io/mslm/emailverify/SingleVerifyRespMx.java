@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class SingleVerifyRespMx {
     @SerializedName("host")
     private String host;
+
     @SerializedName("pref")
     private int pref;
 
