@@ -15,7 +15,7 @@ public class EmailVerify {
     Lib lib;
 
     public EmailVerify() {
-        lib = new Lib(Constants.defaultApiKey);
+        lib = new Lib("");
     }
 
     public EmailVerify(String apiKey) {

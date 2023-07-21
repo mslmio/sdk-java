@@ -7,6 +7,7 @@ import okhttp3.*;
 import com.google.gson.Gson;
 import java.net.*;
 
+import java.util.Iterator;
 import java.util.Map;
 
 public class Lib {
@@ -16,16 +17,16 @@ public class Lib {
     String userAgent;
 
     public Lib(){
-        apiKey = Constants.defaultApiKey;
+        apiKey = "";
         http = new OkHttpClient();
-        baseUrl = URI.create(Constants.defaultBaseUrl);
+        baseUrl = URI.create("https://mslm.io");
         userAgent = Constants.defaultUserAgent;
     }
 
     public Lib(String apiKey){
         this.apiKey = apiKey;
         http = new OkHttpClient();
-        baseUrl = URI.create(Constants.defaultBaseUrl);
+        baseUrl = URI.create("https://mslm.io");
         userAgent = Constants.defaultUserAgent;
     }
 
@@ -46,17 +47,25 @@ public class Lib {
 
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
         URI tUrl = opt.baseUrl.resolve(urlPath);
+        qp.put("apiKey", opt.apiKey);
+
         StringBuilder tUrlQuery = new StringBuilder();
-        for (Map.Entry<String, String> entry : qp.entrySet()) {
-            tUrlQuery.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        Iterator<Map.Entry<String, String>> iterator = qp.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, String> entry = iterator.next();
+            tUrlQuery.append(entry.getKey()).append("=").append(entry.getValue());
+
+            // Check if there is another entry in the map
+            if (iterator.hasNext()) {
+                tUrlQuery.append("&");
+            }
         }
-        String encodedQuery = tUrlQuery.append("apikey=").append(opt.apiKey).toString();
 
         return new URI(
             tUrl.getScheme(),
             tUrl.getAuthority(),
             tUrl.getPath(),
-            encodedQuery,
+            tUrlQuery.toString(),
             tUrl.getFragment()
         );
     }

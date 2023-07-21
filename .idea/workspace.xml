@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ba5b3f3b-55cf-465f-b77f-5d7a86f389fe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/myapp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/myapp/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/EmailVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/emailverify/EmailVerify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/lib/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/lib/Lib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/lib/ReqOpts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/lib/ReqOpts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/mslm/Mslm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/mslm/Mslm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/mslm/myapp/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/mslm/myapp/src/main/java/org/example/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/mslm/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/mslm/Constants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/mslm/lib/Lib.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/mslm/lib/Lib.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/io/mslm/lib/ReqOpts$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/io/mslm/lib/ReqOpts$Builder.class" afterDir="false" />

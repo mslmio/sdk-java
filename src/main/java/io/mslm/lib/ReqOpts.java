@@ -11,10 +11,10 @@ public class ReqOpts {
     String userAgent;
 
     public ReqOpts() {
-        this.http = Constants.defaultHttpClient;
-        this.baseUrl = URI.create(Constants.defaultBaseUrl);
+        this.http = new OkHttpClient();
+        this.baseUrl = URI.create("https://mslm.io");
         this.userAgent = Constants.defaultUserAgent;
-        this.apiKey = Constants.defaultApiKey;
+        this.apiKey = "";
     }
 
     public ReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {

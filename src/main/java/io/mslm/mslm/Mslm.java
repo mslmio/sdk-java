@@ -13,8 +13,8 @@ public class Mslm {
     public EmailVerify emailVerify;
 
     public Mslm() {
-        emailVerify = new EmailVerify(Constants.defaultApiKey);
-        lib = new Lib(Constants.defaultApiKey);
+        emailVerify = new EmailVerify("");
+        lib = new Lib("");
     }
 
     public Mslm(String apiKey) {
