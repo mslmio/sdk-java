@@ -13,7 +13,6 @@ public class Lib {
     public OkHttpClient http;
     public URI baseUrl;
     public String userAgent;
-
     public static final String version  = "1.0.0";
 
     public Lib(){
@@ -56,7 +55,7 @@ public class Lib {
                 .host(tUrl.getHost())
                 .addPathSegment(urlPath);
 
-        // Add query params to the URL
+        // Add query params to the URL.
         for (Map.Entry<String, String> entry : qp.entrySet()) {
             httpUrlBuilder.addQueryParameter(entry.getKey(), entry.getValue());
         }

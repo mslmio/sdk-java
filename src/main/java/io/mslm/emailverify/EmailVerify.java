@@ -38,7 +38,7 @@ public class EmailVerify {
     }
 
     public SingleVerifyResp singleVerify(String email) throws Exception {
-        // Initialize req options with default value.
+        // Initialize req options if not provided.
         SingleVerifyReqOpts opt = new SingleVerifyReqOpts
                 .Builder()
                 .withReqOpts(
@@ -68,7 +68,7 @@ public class EmailVerify {
            opt = opts;
        }
 
-       // Check if email needs to encoded or not.
+       // Encode email if not disabled in options.
        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
            email = URLEncoder.encode(email, "UTF-8");
        }
