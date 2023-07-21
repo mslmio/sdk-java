@@ -1,33 +1,33 @@
 package io.mslm.lib;
 
-import io.mslm.Constants;
 import io.mslm.emailverify.SingleVerifyResp;
 import okhttp3.*;
 
 import com.google.gson.Gson;
 import java.net.*;
 
-import java.util.Iterator;
 import java.util.Map;
 
 public class Lib {
-    String apiKey;
-    OkHttpClient http;
-    URI baseUrl;
-    String userAgent;
+    public String apiKey;
+    public OkHttpClient http;
+    public URI baseUrl;
+    public String userAgent;
+
+    public static final String version  = "1.0.0";
 
     public Lib(){
         apiKey = "";
         http = new OkHttpClient();
         baseUrl = URI.create("https://mslm.io");
-        userAgent = Constants.defaultUserAgent;
+        userAgent = version;
     }
 
     public Lib(String apiKey){
         this.apiKey = apiKey;
         http = new OkHttpClient();
         baseUrl = URI.create("https://mslm.io");
-        userAgent = Constants.defaultUserAgent;
+        userAgent = "mslm/java/" + version;
     }
 
     public void setHttpClient(OkHttpClient httpClient) {
@@ -46,26 +46,27 @@ public class Lib {
     }
 
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
-        URI tUrl = opt.baseUrl.resolve(urlPath);
+        // Put the API key to the query params map.
         qp.put("apiKey", opt.apiKey);
 
-        StringBuilder tUrlQuery = new StringBuilder();
-        Iterator<Map.Entry<String, String>> iterator = qp.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String> entry = iterator.next();
-            tUrlQuery.append(entry.getKey()).append("=").append(entry.getValue());
+        // Parse URL using http URL builder.
+        URI tUrl = opt.baseUrl.resolve(urlPath);
+        HttpUrl.Builder httpUrlBuilder = new HttpUrl.Builder()
+                .scheme("https")
+                .host(tUrl.getHost())
+                .addPathSegment(urlPath);
 
-            // Check if there is another entry in the map
-            if (iterator.hasNext()) {
-                tUrlQuery.append("&");
-            }
+        // Add query params to the URL
+        for (Map.Entry<String, String> entry : qp.entrySet()) {
+            httpUrlBuilder.addQueryParameter(entry.getKey(), entry.getValue());
         }
+        HttpUrl httpUrl = httpUrlBuilder.build();
 
         return new URI(
             tUrl.getScheme(),
             tUrl.getAuthority(),
             tUrl.getPath(),
-            tUrlQuery.toString(),
+            httpUrl.toString(),
             tUrl.getFragment()
         );
     }
@@ -79,12 +80,14 @@ public class Lib {
                 .url(tUrl.toURL())
                 .build();
 
+        // Request and read resp body.
         OkHttpClient client = new OkHttpClient();
         Response response = client.newCall(request).execute();
         ResponseBody responseBody = response.body();
         assert responseBody != null;
         String jsonData = responseBody.string();
 
+        // Parse JSON string data to object.
         Gson gson = new Gson();
         SingleVerifyResp singleVerifyResp = gson.fromJson(jsonData, SingleVerifyResp.class);
         return  singleVerifyResp;

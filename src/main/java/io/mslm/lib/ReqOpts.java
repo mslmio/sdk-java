@@ -1,6 +1,5 @@
 package io.mslm.lib;
 
-import io.mslm.Constants;
 import okhttp3.OkHttpClient;
 import java.net.URI;
 
@@ -13,7 +12,7 @@ public class ReqOpts {
     public ReqOpts() {
         this.http = new OkHttpClient();
         this.baseUrl = URI.create("https://mslm.io");
-        this.userAgent = Constants.defaultUserAgent;
+        this.userAgent = "mslm/java/" + Lib.version;
         this.apiKey = "";
     }
 

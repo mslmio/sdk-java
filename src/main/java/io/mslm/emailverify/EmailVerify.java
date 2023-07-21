@@ -1,6 +1,5 @@
 package io.mslm.emailverify;
 
-import io.mslm.Constants;
 import io.mslm.lib.Lib;
 import io.mslm.lib.ReqOpts;
 import okhttp3.OkHttpClient;
@@ -39,10 +38,17 @@ public class EmailVerify {
     }
 
     public SingleVerifyResp singleVerify(String email) throws Exception {
-        // Set request options to default in case not provider with the req.
+        // Initialize req options with default value.
         SingleVerifyReqOpts opt = new SingleVerifyReqOpts
                 .Builder()
-                .withReqOpts(new ReqOpts.Builder().build())
+                .withReqOpts(
+                        new ReqOpts.Builder()
+                                .withApiKey(lib.apiKey)
+                                .withBaseUrl(lib.baseUrl)
+                                .withHttpClient(lib.http)
+                                .withUserAgent(lib.userAgent)
+                                .build()
+                )
                 .build();
 
         Map<String, String> qp = new HashMap<String, String>();
@@ -62,7 +68,7 @@ public class EmailVerify {
            opt = opts;
        }
 
-       // Prepare URL.
+       // Check if email needs to encoded or not.
        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
            email = URLEncoder.encode(email, "UTF-8");
        }
