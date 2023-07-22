@@ -13,24 +13,25 @@ public class Lib {
     public OkHttpClient http;
     public URI baseUrl;
     public String userAgent;
-    public static final String version  = "1.0.0";
+    public static final Gson gson = new Gson();
 
     public Lib(){
         apiKey = "";
         http = new OkHttpClient();
         baseUrl = URI.create("https://mslm.io");
-        userAgent = version;
+        userAgent = getUserAgent("mslm");
     }
 
     public Lib(String apiKey){
         this.apiKey = apiKey;
         http = new OkHttpClient();
         baseUrl = URI.create("https://mslm.io");
-        userAgent = "mslm/java/" + version;
+        userAgent = getUserAgent("mslm");
     }
 
     public void setHttpClient(OkHttpClient httpClient) {
-        this.http = httpClient;}
+        this.http = httpClient;
+    }
 
     public void setBaseUrl(String baseUrlStr) throws Exception {
         this.baseUrl = new URI(baseUrlStr);
@@ -44,9 +45,13 @@ public class Lib {
         this.apiKey = apiKey;
     }
 
+    public static String getUserAgent(String pkg) {
+        return pkg + "/java/1.0.0";
+    }
+
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
         // Put the API key to the query params map.
-        qp.put("apiKey", opt.apiKey);
+        qp.put("apikey", opt.apiKey);
 
         // Parse URL using http URL builder.
         URI tUrl = opt.baseUrl.resolve(urlPath);
@@ -80,15 +85,12 @@ public class Lib {
                 .build();
 
         // Request and read resp body.
-        OkHttpClient client = new OkHttpClient();
-        Response response = client.newCall(request).execute();
+        Response response = http.newCall(request).execute();
         ResponseBody responseBody = response.body();
         assert responseBody != null;
         String jsonData = responseBody.string();
 
         // Parse JSON string data to object.
-        Gson gson = new Gson();
-        SingleVerifyResp singleVerifyResp = gson.fromJson(jsonData, SingleVerifyResp.class);
-        return  singleVerifyResp;
+        return gson.fromJson(jsonData, SingleVerifyResp.class);
     }
 }

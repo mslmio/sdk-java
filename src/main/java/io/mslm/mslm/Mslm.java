@@ -1,6 +1,6 @@
 package io.mslm.mslm;
 
-    import io.mslm.emailverify.EmailVerify;
+import io.mslm.emailverify.EmailVerify;
 import io.mslm.lib.Lib;
 import okhttp3.OkHttpClient;
 
@@ -12,8 +12,8 @@ public class Mslm {
     public EmailVerify emailVerify;
 
     public Mslm() {
-        emailVerify = new EmailVerify("");
-        lib = new Lib("");
+        emailVerify = new EmailVerify();
+        lib = new Lib();
     }
 
     public Mslm(String apiKey) {

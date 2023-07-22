@@ -12,7 +12,7 @@ public class ReqOpts {
     public ReqOpts() {
         this.http = new OkHttpClient();
         this.baseUrl = URI.create("https://mslm.io");
-        this.userAgent = "mslm/java/" + Lib.version;
+        this.userAgent = Lib.getUserAgent("mslm");
         this.apiKey = "";
     }
 

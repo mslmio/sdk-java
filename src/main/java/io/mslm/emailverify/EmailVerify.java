@@ -14,7 +14,7 @@ public class EmailVerify {
     Lib lib;
 
     public EmailVerify() {
-        lib = new Lib("");
+        lib = new Lib();
     }
 
     public EmailVerify(String apiKey) {
