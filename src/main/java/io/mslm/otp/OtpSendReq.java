@@ -2,6 +2,7 @@ package io.mslm.otp;
 
 
 import com.google.gson.annotations.SerializedName;
+
 @SuppressWarnings("unused")
 public class OtpSendReq {
 

@@ -2,9 +2,7 @@ package io.mslm.lib;
 
 import io.mslm.emailverify.SingleVerifyResp;
 import okhttp3.*;
-
 import com.google.gson.Gson;
-
 import java.io.IOException;
 import java.net.*;
 
@@ -100,23 +98,11 @@ public class Lib {
         HttpUrl httpUrl = httpUrlBuilder.build();
 
 
-        return new URI(
-                tUrl.getScheme(),
-                tUrl.getAuthority(),
-                tUrl.getPath(),
-                httpUrl.query(),
-                tUrl.getFragment()
-        );
+        return new URI(tUrl.getScheme(), tUrl.getAuthority(), tUrl.getPath(), httpUrl.query(), tUrl.getFragment());
     }
 
-    public SingleVerifyResp reqAndResp(
-            URI tUrl,
-            ReqOpts opt
-    ) throws Exception {
-        Request request = new Request.Builder()
-                .header("User-Agent", opt.getUserAgent())
-                .url(tUrl.toURL())
-                .build();
+    public SingleVerifyResp reqAndResp(URI tUrl, ReqOpts opt) throws Exception {
+        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toURL()).build();
         Response response = http.newCall(request).execute();
         ResponseBody responseBody = response.body();
         assert responseBody != null;
@@ -125,11 +111,7 @@ public class Lib {
     }
 
     public void reqAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
-        Request request = new Request.Builder()
-                .header("User-Agent", opt.getUserAgent())
-                .url(tUrl.toString())
-                .method(method, RequestBody.create(data))
-                .build();
+        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString()).method(method, RequestBody.create(data)).build();
         Response response = http.newCall(request).execute();
         ResponseBody responseBody = response.body();
         assert responseBody != null;

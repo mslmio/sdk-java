@@ -1,4 +1,5 @@
 package io.mslm.otp;
+
 @SuppressWarnings("unused")
 public class OtpTokenVerifyResp {
     private long code;

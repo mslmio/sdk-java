@@ -26,10 +26,7 @@ public class SingleVerifyRespMx {
 
     @Override
     public String toString() {
-        return "SingleVerifyRespMx{" +
-                "host='" + host + '\'' +
-                ", pref=" + pref +
-                '}';
+        return "SingleVerifyRespMx{" + "host='" + host + '\'' + ", pref=" + pref + '}';
     }
 
     public String getHost() {

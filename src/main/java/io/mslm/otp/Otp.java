@@ -1,15 +1,12 @@
 package io.mslm.otp;
 
 import io.mslm.lib.Lib;
-import io.mslm.lib.ReqOpts;
 import okhttp3.OkHttpClient;
 import com.google.gson.Gson;
-
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 @SuppressWarnings("unused")
 public class Otp {
@@ -81,7 +78,6 @@ public class Otp {
         lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(), opt.reqOpts);
         return otpTokenVerifyResp;
     }
-
 
 
 }

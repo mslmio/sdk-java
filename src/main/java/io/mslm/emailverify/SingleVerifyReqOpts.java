@@ -12,7 +12,8 @@ public class SingleVerifyReqOpts {
     // By default, the input email address is URL encoded.
     private Boolean disableUrlEncode;
 
-    public SingleVerifyReqOpts() {}
+    public SingleVerifyReqOpts() {
+    }
 
     public ReqOpts getReqOpts() {
         return reqOpts;

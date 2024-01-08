@@ -30,6 +30,7 @@ public class Mslm {
     public void setHttpClient(OkHttpClient httpClient) {
         lib.setHttpClient(httpClient);
         emailVerify.setHttpClient(httpClient);
+
         otp.setHttpClient(httpClient);
     }
 

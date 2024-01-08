@@ -23,7 +23,6 @@ public class ReqOpts {
     }
 
 
-
     public ReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {
         this.http = http;
         this.baseUrl = baseUrl;
