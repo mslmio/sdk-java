@@ -33,6 +33,9 @@ public class ReqOpts {
     public String getApiKey() {
         return apiKey;
     }
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     public OkHttpClient getHttpClient() {
         return http;

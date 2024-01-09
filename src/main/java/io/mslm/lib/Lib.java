@@ -1,6 +1,8 @@
 package io.mslm.lib;
 
 import io.mslm.emailverify.SingleVerifyResp;
+import io.mslm.otp.OtpSendResp;
+import io.mslm.otp.OtpTokenVerifyResp;
 import okhttp3.*;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -110,11 +112,19 @@ public class Lib {
         return gson.fromJson(jsonData, SingleVerifyResp.class);
     }
 
-    public void reqAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
+    public OtpSendResp reqAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
         Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString()).method(method, RequestBody.create(data)).build();
         Response response = http.newCall(request).execute();
         ResponseBody responseBody = response.body();
         assert responseBody != null;
+        return new Gson().fromJson(responseBody.string(),OtpSendResp.class);
+    }
+    public OtpTokenVerifyResp verifyAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
+        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString()).method(method, RequestBody.create(data)).build();
+        Response response = http.newCall(request).execute();
+        ResponseBody responseBody = response.body();
+        assert responseBody != null;
+        return new Gson().fromJson(responseBody.string(),OtpTokenVerifyResp.class);
     }
 
 }

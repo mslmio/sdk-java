@@ -39,13 +39,7 @@ public class EmailVerify {
     public SingleVerifyResp singleVerify(String email) throws Exception {
         // Initialize req options if not provided.
         SingleVerifyReqOpts opt = new SingleVerifyReqOpts.Builder().withReqOpts(new ReqOpts.Builder().withApiKey(lib.apiKey).withBaseUrl(lib.baseUrl).withHttpClient(lib.http).withUserAgent(lib.userAgent).build()).build();
-
-        Map<String, String> qp = new HashMap<String, String>();
-        qp.put("email", email);
-
-        // Get data.
-        URI tUrl = lib.prepareUrl("/api/sv/v1", qp, opt.getReqOpts());
-        return lib.reqAndResp(tUrl, opt.getReqOpts());
+        return singleVerify(email,opt);
     }
 
     public SingleVerifyResp singleVerify(String email, SingleVerifyReqOpts opts) throws Exception {
@@ -54,10 +48,7 @@ public class EmailVerify {
             opt = opts;
         }
 
-        // Encode email if not disabled in options.
-        if (opt.getDisableUrlEncode() != null && !opt.getDisableUrlEncode()) {
-            email = URLEncoder.encode(email, "UTF-8");
-        }
+
 
         Map<String, String> qp = new HashMap<String, String>();
         qp.put("email", email);

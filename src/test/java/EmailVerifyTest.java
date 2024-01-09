@@ -3,7 +3,6 @@ import io.mslm.emailverify.SingleVerifyRespMx;
 import io.mslm.mslm.Mslm;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -13,8 +12,8 @@ public class EmailVerifyTest {
 
     @Before
     public void setup() {
-        String apiKey = System.getenv("APIKEY");
-        c = new Mslm();
+        String apiKey = ""; //Your API key
+        c = new Mslm(apiKey);
     }
 
     @Test
@@ -33,7 +32,6 @@ public class EmailVerifyTest {
         assertFalse(resp.isDisposable());
         assertFalse(resp.isFree());
         assertTrue(resp.isRole());
-
         List<SingleVerifyRespMx> mxList = resp.getMx();
         assertTrue(mxList.contains(new SingleVerifyRespMx("ASPMX.L.GOOGLE.COM.", 1)));
         assertTrue(mxList.contains(new SingleVerifyRespMx("ALT1.ASPMX.L.GOOGLE.COM.", 5)));
@@ -58,10 +56,8 @@ public class EmailVerifyTest {
         assertFalse(resp.isDisposable());
         assertFalse(resp.isFree());
         assertFalse(resp.isRole());
-
         List<SingleVerifyRespMx> mxList = resp.getMx();
-        assertEquals(5, mxList.size()); /*TODO("Confirm this, will no of items change in any case ")*/
-
+        assertEquals(5, mxList.size());
         assertTrue(mxList.contains(new SingleVerifyRespMx("ASPMX.L.GOOGLE.COM.", 1)));
         assertTrue(mxList.contains(new SingleVerifyRespMx("ALT1.ASPMX.L.GOOGLE.COM.", 5)));
         assertTrue(mxList.contains(new SingleVerifyRespMx("ALT2.ASPMX.L.GOOGLE.COM.", 5)));
@@ -87,7 +83,7 @@ public class EmailVerifyTest {
         assertFalse(resp.isRole());
 
         List<SingleVerifyRespMx> mxList = resp.getMx();
-        assertEquals(1, mxList.size()); // Assuming there is 1 element in the list
+        assertEquals(1, mxList.size());
 
         assertTrue(mxList.contains(new SingleVerifyRespMx("mx.yandex.net.", 10)));
     }
@@ -109,6 +105,8 @@ public class EmailVerifyTest {
         assertFalse(resp.isRole());
 
         List<SingleVerifyRespMx> mxList = resp.getMx();
-        assertTrue(mxList.isEmpty()); // Assuming there are no elements in the list
+        assertTrue(mxList.isEmpty());
     }
+
+
 }

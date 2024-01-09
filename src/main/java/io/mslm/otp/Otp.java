@@ -3,6 +3,7 @@ package io.mslm.otp;
 import io.mslm.lib.Lib;
 import okhttp3.OkHttpClient;
 import com.google.gson.Gson;
+
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -56,8 +57,17 @@ public class Otp {
         String data;
         data = new Gson().toJson(otpSendReq);
         OtpSendResp otpSendResp = new OtpSendResp();
-        lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(StandardCharsets.UTF_8), opt.reqOpts);
-        return otpSendResp;
+        return lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(StandardCharsets.UTF_8), opt.reqOpts);
+
+    }
+
+
+    public OtpSendResp sendOtp(String phone, String tmplSms, int tokenLen, int expireSeconds) throws Exception {
+        OtpSendReq request = new OtpSendReq(phone, tmplSms, tokenLen, expireSeconds);
+        OtpSendReqOpts opt = new OtpSendReqOpts();
+        opt.reqOpts.setApiKey(lib.apiKey);
+        return sendOtp(request, opt);
+
     }
 
 
@@ -66,6 +76,7 @@ public class Otp {
         OtpTokenVerifyReqOpts opt = new OtpTokenVerifyReqOpts();
         if (opts.length > 0) {
             opt = opts[opts.length - 1];
+            if (opt.reqOpts.getApiKey().isEmpty()) opt.reqOpts.setApiKey(lib.apiKey);
         }
         lib.prepareOpts(opt.reqOpts);
         // Prepare URL.
@@ -75,8 +86,18 @@ public class Otp {
         String data;
         data = new Gson().toJson(otpTokenVerifyReq);
         OtpTokenVerifyResp otpTokenVerifyResp = new OtpTokenVerifyResp();
-        lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(), opt.reqOpts);
-        return otpTokenVerifyResp;
+        return lib.verifyAndResp(METHOD_POST, tUrl, data.getBytes(), opt.reqOpts);
+    }
+
+    public OtpTokenVerifyResp verify(String phone, String token) throws Exception {
+        return verify(phone, token, true);
+    }
+
+    public OtpTokenVerifyResp verify(String phone, String token, Boolean consume) throws Exception {
+        OtpTokenVerifyReq request = new OtpTokenVerifyReq(phone, token, consume);
+        OtpTokenVerifyReqOpts opt = new OtpTokenVerifyReqOpts();
+        opt.reqOpts.setApiKey(lib.apiKey);
+        return verify(request, opt);
     }
 
 
