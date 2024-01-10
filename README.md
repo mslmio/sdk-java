@@ -11,6 +11,103 @@ The official Java SDK for Mslm APIs.
 
 ## Installation
 
+Replace `1.0.0` with the version you want to use. You can find the latest version on the [SDK-Java GitHub releases page](https://github.com/mslmio/sdk-java/releases).
+
+
+### Maven
+
+Add the JitPack repository to your project's pom.xml file:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+Then, add the following dependency:
+
+```xml
+<dependency>
+    <groupId>com.github.mslmio</groupId>
+    <artifactId>sdk-java</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+### Gradle
+
+Add the JitPack repository and the following dependency to your project's `build.gradle` (or `build.gradle.kts` for Kotlin DSL):
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation 'com.github.mslmio:sdk-java:1.0.0'
+}
+```
+### Android
+
+#### Gradle (Groovy DSL)
+
+Add the JitPack repository to your project's `build.gradle` file:
+
+```groovy
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+Add the following dependency to your app module's `build.gradle` file:
+
+```groovy
+android {
+    ...
+}
+
+dependencies {
+    implementation 'com.github.mslmio:sdk-java:1.0.0'
+}
+```
+
+#### Gradle (Kotlin DSL)
+
+Add the JitPack repository to your project's `build.gradle.kts` file:
+
+```kotlin
+allprojects {
+    repositories {
+        ...
+        maven("https://jitpack.io")
+    }
+}
+```
+
+Add the following dependency to your app module's build.gradle.kts file:
+
+```kotlin
+plugins {
+    // other plugins...
+}
+
+android {
+    // android configuration...
+}
+
+dependencies {
+    implementation("com.github.mslmio:sdk-java:1.0.0")
+    // other dependencies...
+}
+```
+
 ## Usage
 
 Let's go through how to start using the Mslm Java SDK with sample code.
@@ -28,7 +125,7 @@ import  io.mslm.mslm;
 Create an instance of the `Mslm` class to use the entire Mslm SDK:
 
 ```Java
-Mslm mslm = new Mslm();
+Mslm mslm = new Mslm("YOUR_API_KEY");
 ```
 
 ### 3. OTP Usage
@@ -65,8 +162,7 @@ Verifying OTP:
    - consume: A flag indicating whether to consume the token after verification (default is `true`).
 */
      try {
-             String code = new Scanner(System.in).nextLine();
-             OtpTokenVerifyResp response = mslm.otp.verify("+123456789", code);
+             OtpTokenVerifyResp response = mslm.otp.verify("+123456789", "1234");
              if (response.getCode() == 1000) {
              System.out.println("Success");
              } 
@@ -98,8 +194,8 @@ Verifying OTP:
 
 ### 5. Using Only OTP or Email Verification
 
-Selecting the Mslm package installs the full suite of Mslm products. If you only need specific functionalities (e.g., OTP or EmailVerify), you can choose individual products to minimize dependencies.
 
+When integrating the Mslm package, the complete suite of Mslm products is included. However, if your project requires only specific functionalities, such as OTP or Email Verification, you have the flexibility of leveraging individual components.
 #### OTP:
 
 1. Import the OTP in your Java file.
