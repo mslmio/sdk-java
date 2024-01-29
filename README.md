@@ -145,25 +145,24 @@ Mslm mslm = new Mslm("YOUR_API_KEY");
 Sending OTP:
 
 ```Java
-    /* - Parameters:
-       - phoneNumber: The phone number to which the OTP will be sent.
-       - templateSMS: The template for the SMS containing the OTP.
-       - tokenLength: The length of the OTP token.
-       - expireSeconds: The expiration time of the OTP in seconds.
-    */
-      try {
-          OtpSendResp response=mslm.otp.sendOtp("+123456789","Your OTP is",6,60);
-          if(response.getCode()==1000){
-              System.out.println("Success");
-              }else {
-              System.out.println("Failed");
-              System.out.println(response.getMsg());
-              }
-         } catch(Exception e){
-              throw new RuntimeException(e);
-              }
+/* - Parameters:
+   - phoneNumber: The phone number to which the OTP will be sent.
+   - templateSMS: The template for the SMS containing the OTP.
+   - tokenLength: The length of the OTP token.
+   - expireSeconds: The expiration time of the OTP in seconds.
+*/
+try {
+  OtpSendResp response = mslm.otp.sendOtp("+123456789", "Your OTP is", 6, 60);
+  if (response.getCode() == 1000) {
+    System.out.println("Success");
+  } else {
+    System.out.println("Failed");
+    System.out.println(response.getMsg());
+  }
+} catch (Exception e) {
+  throw new RuntimeException(e);
+}
 ```
-
 Verifying OTP:
 
 ```Java
@@ -172,31 +171,30 @@ Verifying OTP:
    - token: The OTP token to be verified.
    - consume: A flag indicating whether to consume the token after verification (default is `true`).
 */
-     try {
-         OtpTokenVerifyResp response=mslm.otp.verify("+123456789","1234");
-         if(response.getCode()==1000){
-             System.out.println("Success");
-             }else {
-             System.out.println("Failed");
-             System.out.println(response.getMsg());
-             }
-         } catch(Exception e){
-             throw new RuntimeException(e);
-             }
+try {
+  OtpTokenVerifyResp response = mslm.otp.verify("+123456789", "1234");
+  if (response.getCode() == 1000) {
+    System.out.println("Success");
+  } else {
+    System.out.println("Failed");
+    System.out.println(response.getMsg());
+  }
+} catch (Exception e) {
+  throw new RuntimeException(e);
+}
 ```
 
 ### 4. Email Verification
 
 ```Java
-    try {
-        SingleVerifyResp response=mslm.emailVerify.singleVerify("user@example.com");
-        System.out.println("Success Response: "+response.toString());
-        } catch(Exception e){
-        System.out.println("Error: "+e.getMessage());
-        throw new RuntimeException(e);
-        }
+try {
+  SingleVerifyResp response = mslm.emailVerify.singleVerify("user@example.com");
+  System.out.println("Success Response: " + response.toString());
+} catch (Exception e) {
+  System.out.println("Error: " + e.getMessage());
+  throw new RuntimeException(e);
+}
 ```
-
 ### 5. Using Only OTP or Email Verification
 
 When integrating the Mslm package, the complete suite of Mslm products is included. However, if your project requires
@@ -220,33 +218,33 @@ Otp otp = new Otp("Your_API_KEY");
 3. Make a call to the OTP
 
 ```Java
-    try {
-        OtpSendResp response=otp.sendOtp("+123456789","Your OTP is",6,60);
-        if(response.getCode()==1000){
-            System.out.println("Success");
-            }else {
-            System.out.println("Failed");
-            System.out.println(response.getMsg());
-            }
-        } catch(Exception e){
-        throw new RuntimeException(e);
-        }
+try {
+  OtpSendResp response = otp.sendOtp("+123456789", "Your OTP is", 6, 60);
+  if (response.getCode() == 1000) {
+    System.out.println("Success");
+  } else {
+    System.out.println("Failed");
+    System.out.println(response.getMsg());
+  }
+} catch (Exception e) {
+  throw new RuntimeException(e);
+}
 ```
 
 4. Make a call to verify the OTP
 
 ```Java
-    try {
-        OtpTokenVerifyResp response=otp.verify("+123456789","12345");
-        if(response.getCode()==1000){
-            System.out.println("Success");
-            }else {
-            System.out.println("Failed");
-            System.out.println(response.getMsg());
-            }
-        } catch(Exception e){
-        throw new RuntimeException(e);
-        }
+try {
+  OtpTokenVerifyResp response = otp.verify("+123456789", "12345");
+  if (response.getCode() == 1000) {
+    System.out.println("Success");
+  } else {
+    System.out.println("Failed");
+    System.out.println(response.getMsg());
+  }
+} catch (Exception e) {
+  throw new RuntimeException(e);
+}
 ```
 
 #### Email:
@@ -266,15 +264,13 @@ EmailVerify emailVerify = new EmailVerify("YOUR_API_KEY");
 3. Make a call to the EmailVerify
 
 ```Java
-     try {
-        SingleVerifyResp response=emailVerify.singleVerify("user@example.com");
-        System.out.println("Success Response: "+response.toString());
-        }
-        catch(Exception e){
-        System.out.println("Error: "+e.getMessage());
-        throw new RuntimeException(e);
-        }
-
+try {
+  SingleVerifyResp response = emailVerify.singleVerify("user@example.com");
+  System.out.println("Success Response: " + response.toString());
+} catch (Exception e) {
+  System.out.println("Error: " + e.getMessage());
+  throw new RuntimeException(e);
+}
 ```
 
 ## About Mslm
