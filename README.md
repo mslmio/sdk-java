@@ -137,7 +137,7 @@ import io.mslm.mslm;
 Create an instance of the `Mslm` class to use the entire Mslm SDK:
 
 ```Java
-Mslm mslm=new Mslm("YOUR_API_KEY");
+Mslm mslm = new Mslm("YOUR_API_KEY");
 ```
 
 ### 3. OTP Usage
@@ -151,16 +151,15 @@ Sending OTP:
        - tokenLength: The length of the OTP token.
        - expireSeconds: The expiration time of the OTP in seconds.
     */
-      try{
-              OtpSendResp response=mslm.otp.sendOtp("+123456789","Your OTP is",6,60);
-              if(response.getCode()==1000){
+      try {
+          OtpSendResp response=mslm.otp.sendOtp("+123456789","Your OTP is",6,60);
+          if(response.getCode()==1000){
               System.out.println("Success");
-              }else{
+              }else {
               System.out.println("Failed");
               System.out.println(response.getMsg());
               }
-              }
-              catch(Exception e){
+         } catch(Exception e){
               throw new RuntimeException(e);
               }
 ```
@@ -173,17 +172,15 @@ Verifying OTP:
    - token: The OTP token to be verified.
    - consume: A flag indicating whether to consume the token after verification (default is `true`).
 */
-     try{
-             OtpTokenVerifyResp response=mslm.otp.verify("+123456789","1234");
-             if(response.getCode()==1000){
+     try {
+         OtpTokenVerifyResp response=mslm.otp.verify("+123456789","1234");
+         if(response.getCode()==1000){
              System.out.println("Success");
-             }
-             else{
+             }else {
              System.out.println("Failed");
              System.out.println(response.getMsg());
              }
-             }
-             catch(Exception e){
+         } catch(Exception e){
              throw new RuntimeException(e);
              }
 ```
@@ -191,15 +188,12 @@ Verifying OTP:
 ### 4. Email Verification
 
 ```Java
-    try{
+    try {
         SingleVerifyResp response=mslm.emailVerify.singleVerify("user@example.com");
         System.out.println("Success Response: "+response.toString());
-
-        }
-        catch(Exception e){
+        } catch(Exception e){
         System.out.println("Error: "+e.getMessage());
         throw new RuntimeException(e);
-
         }
 ```
 
@@ -220,22 +214,21 @@ import io.mslm.otp;
 2. Initialize the Otp SDK
 
 ```Java
-Otp otp=new Otp("Your_API_KEY");
+Otp otp = new Otp("Your_API_KEY");
 ```
 
 3. Make a call to the OTP
 
 ```Java
-    try{
+    try {
         OtpSendResp response=otp.sendOtp("+123456789","Your OTP is",6,60);
         if(response.getCode()==1000){
-        System.out.println("Success");
-        }else{
-        System.out.println("Failed");
-        System.out.println(response.getMsg());
-        }
-        }
-        catch(Exception e){
+            System.out.println("Success");
+            }else {
+            System.out.println("Failed");
+            System.out.println(response.getMsg());
+            }
+        } catch(Exception e){
         throw new RuntimeException(e);
         }
 ```
@@ -243,16 +236,15 @@ Otp otp=new Otp("Your_API_KEY");
 4. Make a call to verify the OTP
 
 ```Java
-    try{
+    try {
         OtpTokenVerifyResp response=otp.verify("+123456789","12345");
         if(response.getCode()==1000){
-        System.out.println("Success");
-        }else{
-        System.out.println("Failed");
-        System.out.println(response.getMsg());
-        }
-        }
-        catch(Exception e){
+            System.out.println("Success");
+            }else {
+            System.out.println("Failed");
+            System.out.println(response.getMsg());
+            }
+        } catch(Exception e){
         throw new RuntimeException(e);
         }
 ```
@@ -268,13 +260,13 @@ import io.mslm.emailverify;
 2. Initialize the EmailVerify SDK
 
 ```Java
-EmailVerify emailVerify=new EmailVerify("YOUR_API_KEY");
+EmailVerify emailVerify = new EmailVerify("YOUR_API_KEY");
 ```
 
 3. Make a call to the EmailVerify
 
 ```Java
-     try{
+     try {
         SingleVerifyResp response=emailVerify.singleVerify("user@example.com");
         System.out.println("Success Response: "+response.toString());
         }
