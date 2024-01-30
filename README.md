@@ -1,9 +1,8 @@
 # Mslm Java SDK
 
-<p>
 <a href="https://github.com/mslmio/sdk-java"><img src="https://img.shields.io/badge/build-passing-%231CB735"></a>
 <a href="https://github.com/mslmio/sdk-java"><img src="https://img.shields.io/badge/Java-Doc-DE5C43.svg?logo=Java"></a>
-</p>
+
 The official Java SDK for Mslm APIs.
 
 ## Requirements
@@ -12,20 +11,15 @@ The official Java SDK for Mslm APIs.
 
 ## Authentication
 
-Mslm's APIs require an API key. If you don't have one, please
-read [Authentication](https://mslm.io/docs/api/authentication) to understand how to get an API key before continuing.
+Mslm's APIs require an API key. If you don't have one, please read [Authentication](https://mslm.io/docs/api/authentication) to understand how to get an API key before continuing.
 
 ## Installation
 
-Replace `1.0.0` with the version you want to use. You can find the latest version on
-the [SDK-Java GitHub releases page](https://github.com/mslmio/sdk-java/releases).
-
 ### Maven
 
-Add the JitPack repository to your project's pom.xml file:
+Add the JitPack repository to your project's `pom.xml` file:
 
-```xml 
-
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -37,11 +31,10 @@ Add the JitPack repository to your project's pom.xml file:
 Then, add the following dependency:
 
 ```xml
-
 <dependency>
     <groupId>com.github.mslmio</groupId>
     <artifactId>sdk-java</artifactId>
-    <version>1.0.0</version>
+    <version>latest_version</version>
 </dependency>
 ```
 
@@ -59,7 +52,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.mslmio:sdk-java:1.0.0'
+    implementation 'com.github.mslmio:sdk-java:latest_version'
 }
 ```
 
@@ -86,7 +79,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.mslmio:sdk-java:1.0.0'
+    implementation 'com.github.mslmio:sdk-java:latest_version'
 }
 ```
 
@@ -115,7 +108,7 @@ android {
 }
 
 dependencies {
-    implementation("com.github.mslmio:sdk-java:1.0.0")
+    implementation("com.github.mslmio:sdk-java:latest_version")
     // other dependencies...
 }
 ```
@@ -124,7 +117,7 @@ dependencies {
 
 Let's go through how to start using the Mslm Java SDK with sample code.
 
-### 1. Import the SDK
+### Import the SDK
 
 In your Java file, import the library at the beginning of the file:
 
@@ -132,15 +125,15 @@ In your Java file, import the library at the beginning of the file:
 import io.mslm.mslm;
 ```
 
-### 2. Initialize the SDK
+### Initialize the SDK
 
 Create an instance of the `Mslm` class to use the entire Mslm SDK:
 
 ```Java
-Mslm mslm = new Mslm("YOUR_API_KEY");
+Mslm mslm = new Mslm();
 ```
 
-### 3. OTP Usage
+### Using OTP
 
 Sending OTP:
 
@@ -163,6 +156,7 @@ try {
   throw new RuntimeException(e);
 }
 ```
+
 Verifying OTP:
 
 ```Java
@@ -175,16 +169,16 @@ try {
   OtpTokenVerifyResp response = mslm.otp.verify("+123456789", "1234");
   if (response.getCode() == 1000) {
     System.out.println("Success");
-  } else {
-    System.out.println("Failed");
-    System.out.println(response.getMsg());
-  }
+   } else {
+     System.out.println("Failed");
+     System.out.println(response.getMsg());
+   }
 } catch (Exception e) {
   throw new RuntimeException(e);
 }
 ```
 
-### 4. Email Verification
+### Using Email Verify
 
 ```Java
 try {
@@ -195,29 +189,29 @@ try {
   throw new RuntimeException(e);
 }
 ```
-### 5. Using Only OTP or Email Verification
 
-When integrating the Mslm package, the complete suite of Mslm products is included. However, if your project requires
-only specific functionalities, such as OTP or Email Verification, you have the flexibility of leveraging individual
-components.
+### Using Individual Clients
 
-#### OTP:
+Selecting the Mslm package installs the full suite of Mslm products. If you only need specific functionalities (e.g., OTP or EmailVerify), you can choose individual products to minimize dependencies.
 
-1. Import the OTP in your Java file.
+#### OTP
+
+1. Import `OTP` in your Java file.
 
 ```Java
 import io.mslm.otp;
 ```
 
-2. Initialize the Otp SDK
+2. Initialize the `OTP`
 
 ```Java
-Otp otp = new Otp("Your_API_KEY");
+Otp otp = new Otp();
 ```
 
 3. Make a call to the OTP
 
 ```Java
+// Example function for sending OTP
 try {
   OtpSendResp response = otp.sendOtp("+123456789", "Your OTP is", 6, 60);
   if (response.getCode() == 1000) {
@@ -231,39 +225,24 @@ try {
 }
 ```
 
-4. Make a call to verify the OTP
+#### Email Verify
 
-```Java
-try {
-  OtpTokenVerifyResp response = otp.verify("+123456789", "12345");
-  if (response.getCode() == 1000) {
-    System.out.println("Success");
-  } else {
-    System.out.println("Failed");
-    System.out.println(response.getMsg());
-  }
-} catch (Exception e) {
-  throw new RuntimeException(e);
-}
-```
-
-#### Email:
-
-1. Import the EmailVerify in your Java file.
+1. Import `EmailVerify` in your Java file.
 
 ```Java
 import io.mslm.emailverify;
 ```
 
-2. Initialize the EmailVerify SDK
+2. Initialize the `EmailVerify`
 
 ```Java
-EmailVerify emailVerify = new EmailVerify("YOUR_API_KEY");
+EmailVerify emailVerify = new EmailVerify();
 ```
 
 3. Make a call to the EmailVerify
 
 ```Java
+// Example function for email verification
 try {
   SingleVerifyResp response = emailVerify.singleVerify("user@example.com");
   System.out.println("Success Response: " + response.toString());
@@ -275,7 +254,6 @@ try {
 
 ## About Mslm
 
-Mslm focuses on producing world-class business solutions. It’s the bread-and-butter of our business to prioritize
-quality on everything we touch. Excellence is a core value that defines our culture from top to bottom.
+Mslm focuses on producing world-class business solutions. It’s the bread-and-butter of our business to prioritize quality on everything we touch. Excellence is a core value that defines our culture from top to bottom.
 
 [![image](https://avatars.githubusercontent.com/u/50307970?s=200&v=4)](https://mslm.io/)

@@ -1,8 +1,8 @@
 package io.mslm.otp;
 
+import com.google.gson.Gson;
 import io.mslm.lib.Lib;
 import okhttp3.OkHttpClient;
-import com.google.gson.Gson;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -42,7 +42,6 @@ public class Otp {
         lib.apiKey = apiKey;
     }
 
-
     public OtpSendResp sendOtp(OtpSendReq otpSendReq, OtpSendReqOpts... opts) throws Exception {
         // Prepare options.
         OtpSendReqOpts opt = new OtpSendReqOpts();
@@ -57,19 +56,15 @@ public class Otp {
         String data;
         data = new Gson().toJson(otpSendReq);
         OtpSendResp otpSendResp = new OtpSendResp();
-        return lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(StandardCharsets.UTF_8), opt.reqOpts);
-
+        return lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(StandardCharsets.UTF_8), opt.reqOpts, OtpSendResp.class);
     }
-
 
     public OtpSendResp sendOtp(String phone, String tmplSms, int tokenLen, int expireSeconds) throws Exception {
         OtpSendReq request = new OtpSendReq(phone, tmplSms, tokenLen, expireSeconds);
         OtpSendReqOpts opt = new OtpSendReqOpts();
         opt.reqOpts.setApiKey(lib.apiKey);
         return sendOtp(request, opt);
-
     }
-
 
     public OtpTokenVerifyResp verify(OtpTokenVerifyReq otpTokenVerifyReq, OtpTokenVerifyReqOpts... opts) throws Exception {
         // Prepare options.
@@ -86,7 +81,7 @@ public class Otp {
         String data;
         data = new Gson().toJson(otpTokenVerifyReq);
         OtpTokenVerifyResp otpTokenVerifyResp = new OtpTokenVerifyResp();
-        return lib.verifyAndResp(METHOD_POST, tUrl, data.getBytes(), opt.reqOpts);
+        return lib.reqAndResp(METHOD_POST, tUrl, data.getBytes(), opt.reqOpts, OtpTokenVerifyResp.class);
     }
 
     public OtpTokenVerifyResp verify(String phone, String token) throws Exception {
@@ -99,7 +94,4 @@ public class Otp {
         opt.reqOpts.setApiKey(lib.apiKey);
         return verify(request, opt);
     }
-
-
 }
-

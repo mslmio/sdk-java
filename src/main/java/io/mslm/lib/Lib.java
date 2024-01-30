@@ -1,13 +1,11 @@
 package io.mslm.lib;
 
-import io.mslm.emailverify.SingleVerifyResp;
-import io.mslm.otp.OtpSendResp;
-import io.mslm.otp.OtpTokenVerifyResp;
-import okhttp3.*;
 import com.google.gson.Gson;
-import java.io.IOException;
-import java.net.*;
+import okhttp3.*;
+import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.Map;
 
 public class Lib {
@@ -80,10 +78,8 @@ public class Lib {
             apiKey = opt.getApiKey();
         }
 
-
         return new ReqOpts(httpC, baseUrl, userAgent, apiKey);
     }
-
 
     public URI prepareUrl(String urlPath, Map<String, String> qp, ReqOpts opt) throws Exception {
         // Put the API key to the query params map.
@@ -99,32 +95,29 @@ public class Lib {
         }
         HttpUrl httpUrl = httpUrlBuilder.build();
 
-
         return new URI(tUrl.getScheme(), tUrl.getAuthority(), tUrl.getPath(), httpUrl.query(), tUrl.getFragment());
     }
 
-    public SingleVerifyResp reqAndResp(URI tUrl, ReqOpts opt) throws Exception {
-        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toURL()).build();
-        Response response = http.newCall(request).execute();
-        ResponseBody responseBody = response.body();
-        assert responseBody != null;
-        String jsonData = responseBody.string();
-        return gson.fromJson(jsonData, SingleVerifyResp.class);
+    public <T> T reqAndResp(URI tUrl, ReqOpts opt, Class<T> responseType) throws IOException {
+        Request request = buildRequest(null, tUrl, null, opt);
+        return executeRequest(request, responseType);
     }
 
-    public OtpSendResp reqAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
-        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString()).method(method, RequestBody.create(data)).build();
-        Response response = http.newCall(request).execute();
-        ResponseBody responseBody = response.body();
-        assert responseBody != null;
-        return new Gson().fromJson(responseBody.string(),OtpSendResp.class);
-    }
-    public OtpTokenVerifyResp verifyAndResp(String method, URI tUrl, byte[] data, ReqOpts opt) throws IOException {
-        Request request = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString()).method(method, RequestBody.create(data)).build();
-        Response response = http.newCall(request).execute();
-        ResponseBody responseBody = response.body();
-        assert responseBody != null;
-        return new Gson().fromJson(responseBody.string(),OtpTokenVerifyResp.class);
+    public <T> T reqAndResp(String method, URI tUrl, byte[] data, ReqOpts opt, Class<T> responseType) throws IOException {
+        Request request = buildRequest(method, tUrl, data, opt);
+        return executeRequest(request, responseType);
     }
 
+    private Request buildRequest(@Nullable String method, URI tUrl, @Nullable byte[] data, ReqOpts opt) {
+        Request.Builder builder = new Request.Builder().header("User-Agent", opt.getUserAgent()).url(tUrl.toString());
+        if (method != null && data != null) builder.method(method, RequestBody.create(data));
+        return builder.build();
+    }
+
+    private <T> T executeRequest(Request request, Class<T> responseType) throws IOException {
+        try (Response response = http.newCall(request).execute()) {
+            assert response.body() != null;
+            return gson.fromJson(response.body().string(), responseType);
+        }
+    }
 }

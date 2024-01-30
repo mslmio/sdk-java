@@ -1,6 +1,7 @@
 package io.mslm.emailverify;
 
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public class SingleVerifyResp {

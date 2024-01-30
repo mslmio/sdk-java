@@ -1,6 +1,5 @@
 package io.mslm.otp;
 
-
 import io.mslm.lib.ReqOpts;
 import okhttp3.OkHttpClient;
 
@@ -16,10 +15,5 @@ public class OtpSendReqOpts {
 
     public OtpSendReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {
         reqOpts = new ReqOpts(http, baseUrl, userAgent, apiKey);
-
     }
-
-
-
-
 }

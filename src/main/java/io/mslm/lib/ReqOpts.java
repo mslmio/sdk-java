@@ -10,7 +10,6 @@ public class ReqOpts {
     URI baseUrl;
     String userAgent;
 
-
     public ReqOpts getReqOpts() {
         return this;
     }
@@ -22,7 +21,6 @@ public class ReqOpts {
         this.apiKey = null;
     }
 
-
     public ReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {
         this.http = http;
         this.baseUrl = baseUrl;
@@ -33,6 +31,7 @@ public class ReqOpts {
     public String getApiKey() {
         return apiKey;
     }
+
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
@@ -82,11 +81,3 @@ public class ReqOpts {
         }
     }
 }
-
-
-
-
-
-
-
-

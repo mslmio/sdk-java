@@ -1,12 +1,9 @@
 package io.mslm.mslm;
 
 import io.mslm.emailverify.EmailVerify;
-import io.mslm.emailverify.SingleVerifyResp;
 import io.mslm.lib.Lib;
-import io.mslm.otp.*;
+import io.mslm.otp.Otp;
 import okhttp3.OkHttpClient;
-
-import java.util.Scanner;
 
 public class Mslm {
     // Common lib class.
@@ -32,7 +29,6 @@ public class Mslm {
     public void setHttpClient(OkHttpClient httpClient) {
         lib.setHttpClient(httpClient);
         emailVerify.setHttpClient(httpClient);
-
         otp.setHttpClient(httpClient);
     }
 
@@ -53,6 +49,4 @@ public class Mslm {
         emailVerify.setApiKey(apiKey);
         otp.setApiKey(apiKey);
     }
-
-
 }

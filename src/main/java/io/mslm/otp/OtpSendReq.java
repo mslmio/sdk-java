@@ -1,6 +1,5 @@
 package io.mslm.otp;
 
-
 import com.google.gson.annotations.SerializedName;
 
 @SuppressWarnings("unused")
@@ -8,13 +7,10 @@ public class OtpSendReq {
 
     @SerializedName("phone")
     private String phone;
-
     @SerializedName("tmpl_sms")
     private String tmplSms;
-
     @SerializedName("token_len")
     private int tokenLen;
-
     @SerializedName("expire_seconds")
     private int expireSeconds;
 
@@ -63,4 +59,3 @@ public class OtpSendReq {
         this.expireSeconds = expireSeconds;
     }
 }
-

@@ -5,7 +5,7 @@ import io.mslm.lib.ReqOpts;
 public class OtpTokenVerifyReqOpts {
     public ReqOpts reqOpts;
 
-    public OtpTokenVerifyReqOpts(){
+    public OtpTokenVerifyReqOpts() {
         reqOpts = new ReqOpts();
     }
 }
