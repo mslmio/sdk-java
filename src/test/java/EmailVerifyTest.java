@@ -3,6 +3,7 @@ import io.mslm.emailverify.SingleVerifyRespMx;
 import io.mslm.mslm.Mslm;
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -81,10 +82,8 @@ public class EmailVerifyTest {
         assertTrue(resp.isDisposable());
         assertTrue(resp.isFree());
         assertFalse(resp.isRole());
-
         List<SingleVerifyRespMx> mxList = resp.getMx();
         assertEquals(1, mxList.size());
-
         assertTrue(mxList.contains(new SingleVerifyRespMx("mx.yandex.net.", 10)));
     }
 
@@ -103,10 +102,7 @@ public class EmailVerifyTest {
         assertFalse(resp.isDisposable());
         assertFalse(resp.isFree());
         assertFalse(resp.isRole());
-
         List<SingleVerifyRespMx> mxList = resp.getMx();
         assertTrue(mxList.isEmpty());
     }
-
-
 }
