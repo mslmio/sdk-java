@@ -1,6 +1,7 @@
 package io.mslm.lib;
 
 import okhttp3.OkHttpClient;
+
 import java.net.URI;
 
 public class ReqOpts {
@@ -9,11 +10,15 @@ public class ReqOpts {
     URI baseUrl;
     String userAgent;
 
+    public ReqOpts getReqOpts() {
+        return this;
+    }
+
     public ReqOpts() {
         this.http = new OkHttpClient();
         this.baseUrl = URI.create("https://mslm.io");
         this.userAgent = Lib.getUserAgent("mslm");
-        this.apiKey = "";
+        this.apiKey = null;
     }
 
     public ReqOpts(OkHttpClient http, URI baseUrl, String userAgent, String apiKey) {
@@ -25,6 +30,10 @@ public class ReqOpts {
 
     public String getApiKey() {
         return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
     }
 
     public OkHttpClient getHttpClient() {

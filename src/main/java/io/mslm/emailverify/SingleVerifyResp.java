@@ -10,7 +10,6 @@ public class SingleVerifyResp {
 
     @SerializedName("username")
     private String username;
-
     @SerializedName("domain")
     private String domain;
 
@@ -43,20 +42,7 @@ public class SingleVerifyResp {
 
     @Override
     public String toString() {
-        return "SingleVerifyResp{" +
-                "email='" + email + '\'' +
-                ", username='" + username + '\'' +
-                ", domain='" + domain + '\'' +
-                ", malformed=" + malformed +
-                ", suggestion='" + suggestion + '\'' +
-                ", status='" + status + '\'' +
-                ", hasMailbox=" + hasMailbox +
-                ", acceptAll=" + acceptAll +
-                ", disposable=" + disposable +
-                ", free=" + free +
-                ", role=" + role +
-                ", mx=" + mx +
-                '}';
+        return "SingleVerifyResp{" + "email='" + email + '\'' + ", username='" + username + '\'' + ", domain='" + domain + '\'' + ", malformed=" + malformed + ", suggestion='" + suggestion + '\'' + ", status='" + status + '\'' + ", hasMailbox=" + hasMailbox + ", acceptAll=" + acceptAll + ", disposable=" + disposable + ", free=" + free + ", role=" + role + ", mx=" + mx + '}';
     }
 
     public String getEmail() {
