@@ -75,7 +75,6 @@ public class EmailVerifyTest {
         assertEquals("temp-mail.org", resp.getDomain());
         assertFalse(resp.isMalformed());
         assertEquals("", resp.getSuggestion());
-//        assertEquals("real", resp.getStatus());
         assertEquals("disposable", resp.getStatus());
         assertTrue(resp.hasMailbox());
         assertTrue(resp.isAcceptAll());
